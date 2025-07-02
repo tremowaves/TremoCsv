@@ -75,7 +75,7 @@ ipcMain.handle('process-files', async (event, options) => {
     
     const records = allFiles.map(fileInfo => {
         const record = {};
-        if (columns.includes('name')) record.name = path.basename(fileInfo.path);
+        if (columns.includes('name')) record.name = path.basename(fileInfo.path, path.extname(fileInfo.path));
         if (columns.includes('path')) record.path = fileInfo.path;
         if (columns.includes('type')) record.type = path.extname(fileInfo.path);
         if (columns.includes('size')) record.size = (fileInfo.stat.size / 1024).toFixed(2);
@@ -94,11 +94,11 @@ ipcMain.handle('process-files', async (event, options) => {
     }
 
     const csvHeader = [];
-    if (columns.includes('name')) csvHeader.push({ id: 'name', title: 'Tên file' });
-    if (columns.includes('path')) csvHeader.push({ id: 'path', title: 'Đường dẫn' });
-    if (columns.includes('type')) csvHeader.push({ id: 'type', title: 'Loại file' });
-    if (columns.includes('size')) csvHeader.push({ id: 'size', title: 'Kích thước (KB)' });
-    if (columns.includes('created')) csvHeader.push({ id: 'created', title: 'Thời gian tạo' });
+    if (columns.includes('name')) csvHeader.push({ id: 'name', title: 'Name' });
+    if (columns.includes('path')) csvHeader.push({ id: 'path', title: 'Path' });
+    if (columns.includes('type')) csvHeader.push({ id: 'type', title: 'Type' });
+    if (columns.includes('size')) csvHeader.push({ id: 'size', title: 'Size (KB)' });
+    if (columns.includes('created')) csvHeader.push({ id: 'created', title: 'Created Date' });
 
     // Ghi BOM để đọc tốt tiếng Việt
     const bom = Buffer.from('\uFEFF', 'utf8');
