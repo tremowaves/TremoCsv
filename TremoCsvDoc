@@ -1,0 +1,83 @@
+Tên ứng dụng: TremoCsv
+
+Chức năng chính:
+Ứng dụng cho phép người dùng quét toàn bộ các file trong một thư mục (và tùy chọn quét cả các thư mục con), sau đó xuất thông tin file ra file CSV theo các trường thông tin được lựa chọn.
+
+1. Giao diện người dùng (UI)
+Chọn thư mục nguồn:
+Nút bấm mở hộp thoại chọn thư mục gốc để bắt đầu quét file.
+
+Tùy chọn quét thư mục con:
+Checkbox “Quét cả thư mục con” cho phép bật/tắt việc quét đệ quy các thư mục con.
+
+Chọn loại file:
+Ô nhập hoặc dropdown cho phép nhập/chọn phần mở rộng file cần quét (ví dụ: .sty, .midi).
+
+Chọn thông tin xuất ra CSV:
+Danh sách các checkbox cho phép chọn các trường thông tin muốn xuất ra file CSV:
+
+Tên file
+
+Đường dẫn file
+
+Loại file (phần mở rộng)
+
+Metadata (nếu có, ví dụ: kích thước, thuộc tính, hoặc metadata âm nhạc nếu là file midi)
+
+Thời gian tạo file
+
+Nút “Xuất CSV”:
+Nút bấm để thực hiện quét và xuất file CSV.
+
+2. Quy trình hoạt động
+Người dùng chọn thư mục nguồn bằng nút chọn thư mục.
+
+Người dùng chọn có quét thư mục con không qua checkbox.
+
+Nhập/chọn loại file cần quét (có thể nhập nhiều loại file, phân cách bằng dấu phẩy).
+
+Chọn các trường thông tin muốn xuất ra CSV bằng các checkbox.
+
+Nhấn nút “Xuất CSV” để bắt đầu quá trình quét và xuất file.
+
+3. Chức năng kỹ thuật
+Quét file:
+Sử dụng Node.js để duyệt các file trong thư mục đã chọn. Nếu người dùng bật tùy chọn, sẽ quét đệ quy toàn bộ thư mục con.
+
+Lọc file theo loại:
+Chỉ lấy các file có phần mở rộng phù hợp với lựa chọn của người dùng.
+
+Lấy thông tin file:
+Thu thập các trường thông tin theo lựa chọn (tên file, đường dẫn, loại file, metadata, thời gian tạo).
+
+Xuất file CSV:
+Tạo file CSV với các cột tương ứng với các trường được chọn. Đảm bảo tạo thư mục đích nếu chưa tồn tại để tránh lỗi khi ghi file.
+
+Xử lý lỗi:
+Hiển thị thông báo khi không thể ghi file (ví dụ: không tồn tại thư mục đích), hướng dẫn người dùng kiểm tra quyền ghi hoặc tạo thư mục trước khi xuất file.
+
+4. Ví dụ về cấu trúc file CSV xuất ra
+Tên file	Đường dẫn	Loại file	Metadata	Thời gian tạo
+song1.midi	C:\Music\song1.midi	.midi	...	2025-07-02 14:00:00
+style1.sty	C:\Music\Styles\style1.sty	.sty	...	2025-07-01 09:12:30
+Các cột sẽ thay đổi tùy theo lựa chọn của người dùng.
+
+5. Điểm nổi bật
+Giao diện trực quan, dễ sử dụng:
+Người dùng không cần kiến thức kỹ thuật để thao tác.
+
+Tùy biến cao:
+Cho phép chọn bất kỳ trường thông tin nào cần xuất.
+
+Hỗ trợ quét sâu nhiều lớp thư mục:
+Phù hợp cho việc quản lý file trong các cấu trúc thư mục phức tạp.
+
+Tương thích đa nền tảng:
+Electron hỗ trợ chạy trên Windows, macOS và Linux.
+
+6. Lưu ý khi triển khai
+Khi lưu file CSV vào thư mục con, cần kiểm tra và tạo thư mục trước khi ghi file để tránh lỗi “no such file or directory”.
+
+Đối với metadata, nếu là file âm nhạc (midi, mp3…), có thể cần thêm thư viện để đọc metadata chuyên sâu.
+
+Nên có thông báo tiến trình hoặc loading khi quét số lượng file lớn.

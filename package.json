@@ -1,0 +1,28 @@
+{
+  "name": "tremocsv",
+  "version": "1.0.0",
+  "main": "main.js",
+  "description": "Ứng dụng xuất danh sách file ra CSV",
+  "scripts": {
+    "start": "electron .",
+    "pack": "electron-builder --win --x64"
+  },
+  "dependencies": {
+    "csv-writer": "^1.6.0"
+  },
+  "devDependencies": {
+    "electron": "^28.2.3",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.tremocsv.app",
+    "productName": "TremoCsv",
+    "win": {
+      "icon": "icon.ico",
+      "target": "nsis"
+    },
+    "directories": {
+      "buildResources": "."
+    }
+  }
+}

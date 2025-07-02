@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>TremoCsv - Xuất danh sách file ra CSV</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 30px; }
+    label { display: block; margin-top: 10px; }
+    input[type="text"] { width: 400px; }
+    .result { margin-top: 20px; color: green; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Xuất danh sách file ra CSV</h2>
+  <label>Thư mục nguồn:
+    <input type="text" id="sourcePath" readonly>
+    <button id="browseBtn">Chọn thư mục...</button>
+  </label>
+  <label>
+    <input type="checkbox" id="recursive" checked> Quét đệ quy (bao gồm thư mục con)
+  </label>
+  <label>
+    Loại file (vd: .jpg, .png, .pdf, .docx): 
+    <input type="text" id="fileTypes" value=".jpg, .png, .pdf, .docx">
+  </label>
+  <label>
+    <b>Cột xuất ra:</b><br>
+    <input type="checkbox" class="col" value="name" checked> Tên file
+    <input type="checkbox" class="col" value="path" checked> Đường dẫn
+    <input type="checkbox" class="col" value="type" checked> Loại file
+    <input type="checkbox" class="col" value="size" checked> Kích thước (KB)
+    <input type="checkbox" class="col" value="created" checked> Thời gian tạo
+  </label>
+  <br>
+  <button id="exportBtn">Quét & Xuất CSV</button>
+  <div id="result" class="result"></div>
+</body>
+<script src="renderer.js"></script>
+</html> 
